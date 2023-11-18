@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TailwindCSS Border Visualizer</title>
+    <!-- <link rel="stylesheet" href="output.css" /> -->
+    <!-- Although is not the best option, I'm using the tailwindcss CDN ont this project, as I couldn't make the color picker for the border color work on the installed version. I will still keep the tailwind files on the project and try to correct this bug in the future -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-slate-50">
+    <div class="container">
+      <header>
+        <h1
+          class="text-2xl md:text-4xl text-slate-700 text-center font-bold mt-8 md:my-8"
+        >
+          TailwindCSS Border Visualizer
+        </h1>
+      </header>
+      <main>
+        <div
+          class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-16 md:h-[65vh] items-center justify-center my-12"
+        >
+          <div class="border border-slate-300 bg-white px-8 pb-8 shadow-md">
+            <h3
+              id="visualizer"
+              class="text-base py-2 font-semibold text-gray-800"
+            >
+              Visualizer:
+            </h3>
+            <div
+              id="box"
+              class="bg-blue-100 w-60 h-60 mx-auto border border-solid border-indigo-700"
+            ></div>
+          </div>
+          <div
+            id="configuration-panel"
+            class="border border-slate-300 p-4 w-80 bg-white shadow-md"
+          >
+            <h3 id="visualizer" class="text-base font-semibold text-gray-800">
+              Select properties:
+            </h3>
+            <label for="borderStyle" class="block text-md text-gray-600"
+              >Border Style:</label
+            >
+            <select
+              name="borderStyle"
+              id="borderStyle"
+              class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+            >
+              <option value="border-solid">border-solid</option>
+              <option value="border-dashed">border-dashed</option>
+              <option value="border-dotted">border-dotted</option>
+              <option value="border-double">border-double</option>
+              <option value="border-hidden">border-hidden</option>
+              <option value="border-none">border-none</option>
+            </select>
+            <label for="borderRadius" class="block text-md text-gray-600"
+              >Border Radius:</label
+            >
+            <select
+              id="borderRadius"
+              name="borderRadius"
+              class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+            >
+              <option value="rounded-none">rounded-none</option>
+              <option value="rounded-sm">rounded-sm</option>
+              <option value="rounded-md">rounded-md</option>
+              <option value="rounded-lg">rounded-lg</option>
+              <option value="rounded-xl">rounded-xl</option>
+              <option value="rounded-xl">rounded-2xl</option>
+              <option value="rounded-xl">rounded-3xl</option>
+              <option value="rounded-full">rounded-full</option>
+            </select>
+            <label for="borderWidth" class="block text-md text-gray-600"
+              >Border Width:</label
+            >
+            <select
+              id="borderWidth"
+              name="borderWidth"
+              class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+            >
+              <option value="border">border</option>
+              <option value="border-0">border-0</option>
+              <option value="border-2">border-2</option>
+              <option value="border-4">border-4</option>
+              <option value="border-8">border-8</option>
+            </select>
+            <label for="borderColor" class="block text-md text-gray-600"
+              >Border color:</label
+            >
+            <!-- Not working on the installed version of tailwind -->
+            <input
+              id="borderColor"
+              name="borderColor"
+              type="color"
+              class="block"
+            />
+            <button
+              id="apply"
+              class="bg-blue-700 text-white py-1 px-4 font-semibold rounded-md hover:bg-blue-600 mt-2"
+            >
+              Apply
+            </button>
+            <h3
+              id="visualizer"
+              class="block border-t border-gray-300 pt-2 text-base font-semibold text-gray-800 mt-3 mb-2"
+            >
+              Copy the applied classes:
+            </h3>
+            <div class="flex items-center">
+              <div
+                id="copy"
+                class="w-full p-2 border border-gray-300 mr-1"
+              ></div>
+              <!-- I intend to add the copy to clipboard functionallity in the future (I don't have that knowlegde yet) -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="{1.5}"
+                stroke="currentColor"
+                className="w-5 h-5"
+                class="w-5 h-5 cursor-pointer inline-block text-gray-600 hover:text-gray-800"
+                id="btnCopy"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer>
+        <div class="text-center italic text-gray-500">
+          By
+          <a
+            class="hover:text-slate-700 font-semibold"
+            href="https://github.com/vhugoaguiar"
+            >@vhugoaguiar</a
+          >
+          <br />
+          <a
+            class="hover:text-slate-700 font-semibold"
+            href="https://tailwindcss.com/docs"
+            >Tailwind CSS Documentation</a
+          >
+        </div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
