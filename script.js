@@ -1,7 +1,7 @@
 "use strict";
 
-const copy = document.querySelector("#copy");
 const btnApply = document.querySelector("#apply");
+const btnCopy = document.querySelector("#btnCopy");
 let applied = [];
 
 // Apply the selected classes to the "box" div, also cleaning the previously applied ones
@@ -34,10 +34,27 @@ const applyClasses = () => {
   // Update the copy fied with the current classes:
   let copyClasses = "";
   applied.forEach((element) => (copyClasses += element + " "));
-  copy.textContent = copyClasses;
+  copy.value = copyClasses;
+};
+
+/* Copy the content from the copy area to the clipboard. *
+ * I tried to use a <div> at fisrt, but the select() function only worked with a <input> field */
+const copyClasses = () => {
+  const copy = document.querySelector("#copy");
+  const tooltip = document.querySelector("#tooltip");
+
+  // Select the text field
+  copy.select();
+  copy.setSelectionRange(0, 99999);
+
+  // Copy the text inside the text field
+  navigator.clipboard.writeText(copy.value);
+
+  // Change the text content of the tooltip:
+  tooltip.textContent = "Text copied!";
 };
 
 // When the button Apply is clicked, execute the function applyClasses
 btnApply.addEventListener("click", applyClasses);
-
-/**** TO BE IMPLEMENTED => Add the event listener on the "copy" buttom to make it work (copping the applied classes to the clipboard)*****/
+// When the copy icon is clicked, execute the function copyClasses
+btnCopy.addEventListener("click", copyClasses);
